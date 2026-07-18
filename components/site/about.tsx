@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DecorativeBackdrop } from "@/components/site/decorative-backdrop";
 import { Reveal } from "@/components/site/reveal";
 import { Section, SectionHeading } from "@/components/site/section";
 import { siteConfig } from "@/lib/site-config";
@@ -8,7 +9,12 @@ export function About() {
   const { about } = siteConfig;
 
   return (
-    <Section id="about" labelledBy="about-title" className="bg-band">
+    <Section
+      id="about"
+      labelledBy="about-title"
+      className="bg-band"
+      backdrop={<DecorativeBackdrop />}
+    >
       <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
         <div>
           <Reveal>
@@ -28,7 +34,7 @@ export function About() {
         </div>
 
         <Reveal delay={0.12}>
-          <Card className="gap-3 rounded-lg shadow-sm">
+          <Card className="gap-3 rounded-lg shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
             <CardHeader>
               <CardTitle className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 At a glance

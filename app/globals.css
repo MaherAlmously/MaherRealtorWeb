@@ -51,13 +51,14 @@
 }
 
 :root {
-  /* DFW professional palette: white paper, charcoal ink, deep brick red accent,
+  /* DFW professional palette: warm paper, charcoal ink, deep brick red accent,
      warm stone bands. No gradients, no gold, no purple. */
-  --background: oklch(1 0 0);
+  color-scheme: light;
+  --background: oklch(0.98 0.004 85);
   --foreground: oklch(0.21 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(0.995 0.002 85);
   --card-foreground: oklch(0.21 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.995 0.002 85);
   --popover-foreground: oklch(0.21 0 0);
   --primary: oklch(0.42 0.155 27);
   --primary-foreground: oklch(0.985 0 0);
@@ -90,6 +91,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -130,10 +132,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth font-sans overflow-x-hidden;
+    transition: background-color 0.3s ease;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -142,5 +145,56 @@
   }
   ::selection {
     background-color: color-mix(in oklch, var(--primary) 16%, white);
+  }
+}
+
+@layer utilities {
+  .bg-dot-grid {
+    background-image: radial-gradient(currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(-50%, -33%) scale(1);
+  }
+  50% {
+    transform: translate(calc(-50% + 18px), calc(-33% + 14px)) scale(1.06);
+  }
+}
+
+.decorative-blob {
+  animation: drift 22s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decorative-blob {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

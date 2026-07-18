@@ -1,16 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, MessageSquareText, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import logo from "@/public/maher-logo.png";
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -35,9 +38,21 @@ export function Navbar() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <a
           href="#top"
-          className="font-serif text-lg font-semibold tracking-tight text-foreground"
+          className="flex min-w-0 shrink items-center gap-2.5 font-serif font-semibold tracking-tight text-foreground"
         >
-          {siteConfig.name}
+          <Image
+            src={logo}
+            alt=""
+            aria-hidden="true"
+            className="size-9 shrink-0 rounded-full sm:size-10"
+            priority
+          />
+          <span className="hidden min-w-0 truncate text-sm sm:block md:text-base lg:text-lg">
+            {siteConfig.brandLine}
+          </span>
+          <span className="min-w-0 truncate text-base sm:hidden">
+            {siteConfig.brandLineShort}
+          </span>
         </a>
 
         <nav aria-label="Main" className="hidden items-center gap-7 md:flex">
@@ -53,18 +68,19 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle className="hidden sm:inline-flex" />
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href={siteConfig.phoneHref}>
-              <Phone className="size-4" />
+            <a href={siteConfig.smsHref}>
+              <MessageSquareText className="size-4" />
               {siteConfig.phoneDisplay}
             </a>
           </Button>
           <Button asChild size="icon" variant="outline" className="sm:hidden">
             <a
-              href={siteConfig.phoneHref}
-              aria-label={`Call Maher at ${siteConfig.phoneDisplay}`}
+              href={siteConfig.smsHref}
+              aria-label={`Text Maher at ${siteConfig.phoneDisplay}`}
             >
-              <Phone className="size-4" />
+              <MessageSquareText className="size-4" />
             </a>
           </Button>
           <Button
@@ -103,12 +119,15 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <Button asChild className="mt-3 w-full">
-                <a href={siteConfig.phoneHref}>
-                  <Phone className="size-4" />
-                  Call {siteConfig.phoneDisplay}
-                </a>
-              </Button>
+              <div className="mt-3 flex items-center gap-2">
+                <Button asChild className="flex-1">
+                  <a href={siteConfig.smsHref}>
+                    <MessageSquareText className="size-4" />
+                    Text {siteConfig.phoneDisplay}
+                  </a>
+                </Button>
+                <ThemeToggle />
+              </div>
             </div>
           </motion.nav>
         ) : null}
