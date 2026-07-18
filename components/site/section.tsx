@@ -5,17 +5,32 @@ type SectionProps = {
   id?: string;
   labelledBy?: string;
   className?: string;
+  /** Decorative absolutely-positioned layer, e.g. <DecorativeBackdrop />. */
+  backdrop?: ReactNode;
   children: ReactNode;
 };
 
-export function Section({ id, labelledBy, className, children }: SectionProps) {
+export function Section({
+  id,
+  labelledBy,
+  className,
+  backdrop,
+  children,
+}: SectionProps) {
   return (
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={cn("scroll-mt-20 py-20 sm:py-24", className)}
+      className={cn(
+        "relative scroll-mt-20 py-20 sm:py-24",
+        backdrop && "overflow-hidden",
+        className
+      )}
     >
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">{children}</div>
+      {backdrop}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
+        {children}
+      </div>
     </section>
   );
 }
