@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# source asset staging (served copies live in /public)
+/Assests/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -39,3 +42,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# deployment bundles / archives
+*.zip
+
+# AI tooling config
+CLAUDE.md
+AGENTS.md
+.claude/
