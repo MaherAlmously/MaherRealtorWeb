@@ -1,13 +1,11 @@
 import {
   Calculator,
   ClipboardList,
+  Handshake,
   Home,
   KeyRound,
-  ListChecks,
   MapPin,
   MessageSquareText,
-  Percent,
-  Scale,
   Search,
   Tag,
   TrendingUp,
@@ -30,19 +28,33 @@ export type WhyPoint = { icon: LucideIcon; title: string; description: string };
 
 export const siteConfig = {
   name: "Maher Almously",
+  brandLine: "Texas REALTOR® | DFW Real Estate",
+  brandLineShort: "DFW REALTOR®",
   role: "Real Estate Agent",
   region: "DFW and North Texas",
   phoneDisplay: "(817) 501-0172",
   phoneHref: "tel:8175010172",
   smsHref: "sms:8175010172",
+  email: "connect@maherealtor.com",
+  emailHref: "mailto:connect@maherealtor.com",
 
   metadata: {
-    title: "Maher Almously | Real Estate Agent in DFW and North Texas",
+    title: "Buy or Sell in DFW | Maher Almously, REALTOR®",
     description:
-      "Maher Almously helps buyers and sellers across Dallas, Plano, Garland, Richardson, Frisco, McKinney, and Allen compare the numbers and move with a clear plan. Call or text (817) 501-0172.",
+      "Buying or selling in Dallas-Fort Worth? Maher Almously helps you compare the real numbers, avoid overpaying, and move with a clear plan. Text or call (817) 501-0172.",
+    keywords: [
+      "DFW real estate agent",
+      "Dallas Fort Worth REALTOR",
+      "homes for sale DFW",
+      "sell my home DFW",
+      "North Texas real estate",
+      "Maher Almously",
+    ],
+    siteUrl: "https://maherealtor.com",
   },
 
   nav: [
+    { label: "Listing", href: "#listing" },
     { label: "Buy", href: "#buy" },
     { label: "Sell", href: "#sell" },
     { label: "Home Value", href: "#home-value" },
@@ -52,12 +64,13 @@ export const siteConfig = {
 
   hero: {
     eyebrow: "DFW and North Texas real estate",
-    headline: "Buy or sell in DFW with the numbers in front of you.",
+    headlineWords: ["Buy", "Sell", "Rent", "Invest"],
+    headlineSuffix: "in DFW with the numbers in front of you.",
     support:
-      "Buying or selling in North Texas moves fast. Maher helps you compare the numbers, understand your options, and move with a clear plan.",
-    ctaPrimary: { label: "Call Maher", href: "tel:8175010172" },
-    ctaSecondary: { label: "Request Home Value", href: "#home-value" },
-    ctaTertiary: { label: "Buyer Consultation", href: "#contact" },
+      "Buying or selling in North Texas moves fast. I help you compare the numbers, understand your options, and move with a clear plan.",
+    ctaPrimary: { label: "Text Me", href: "sms:8175010172" },
+    ctaSecondary: { label: "Call Me", href: "tel:8175010172" },
+    ctaTertiary: { label: "Request Home Value", href: "#home-value" },
     panel: {
       title: "Start here",
       rows: [
@@ -80,7 +93,7 @@ export const siteConfig = {
           href: "#home-value",
         },
       ],
-      callLabel: "Call or text Maher",
+      textLabel: "Text or call me",
     },
   },
 
@@ -89,7 +102,7 @@ export const siteConfig = {
       icon: Search,
       title: "Search Homes",
       description:
-        "Tell Maher your price range, areas, and must haves. He sets up a tailored MLS search so real matches come straight to you.",
+        "Tell me your price range, areas, and must haves. I set up a tailored MLS search so real matches come straight to you.",
       ctaLabel: "Start a search",
       href: "#contact",
     },
@@ -113,19 +126,70 @@ export const siteConfig = {
       icon: KeyRound,
       title: "First-Time Buyer Help",
       description:
-        "From loan options to your first offer, get plain answers to the questions you feel you should already know.",
+        "From getting pre-approved to writing your first offer, get plain answers to the questions you feel you should already know.",
       ctaLabel: "Start the conversation",
       href: "#contact",
     },
   ] satisfies ActionCard[],
 
+  listings: {
+    eyebrow: "Listings",
+    title: "Current Listings",
+    lead: "Homes I represent right now. New listings appear here as they hit the market.",
+    textLabel: "Text Me",
+    callLabel: "Call Me",
+    openSlot: {
+      title: "Your house could be here",
+      copy: "Get a pricing review and a marketing plan, and yours can be the next listing on this page.",
+      ctaLabel: "Start the conversation",
+      href: "#contact",
+    },
+    items: [
+      {
+        slug: "814-honey-hill",
+        status: "For Lease",
+        address: "814 Honey Hill Drive",
+        cityStateZip: "Garland, TX 75040",
+        price: "$3,495",
+        priceSuffix: "/mo",
+        availability: "Available September 1, 2026",
+        photos: [
+          { src: "/listings/814-honey-hill/00-front.jpeg", alt: "Front of the home at 814 Honey Hill Drive" },
+          { src: "/listings/814-honey-hill/05.jpeg", alt: "Front entrance with stone archway" },
+          { src: "/listings/814-honey-hill/08.jpeg", alt: "Covered patio with extended outdoor living area" },
+          { src: "/listings/814-honey-hill/10.jpeg", alt: "Backyard with pergola and gardens" },
+          { src: "/listings/814-honey-hill/09.jpeg", alt: "Backyard gardens and mature trees" },
+          { src: "/listings/814-honey-hill/04.jpeg", alt: "Side view of the home and yard" },
+        ],
+        facts: [
+          { label: "Beds", value: "6" },
+          { label: "Baths", value: "3" },
+          { label: "Sq Ft", value: "3,381" },
+          { label: "Garage", value: "2 car" },
+        ],
+        description:
+          "Spacious two story home on a corner lot with two living areas, two dining areas, an upstairs game room, and a downstairs bedroom with a full bath. The updated kitchen has granite countertops and a center island, and the covered patio overlooks the largest backyard in the neighborhood. Minutes from Firewheel Town Center and President George Bush Turnpike, in Garland ISD with school choice.",
+        details: [
+          { label: "Lease term", value: "12 months minimum" },
+          { label: "School district", value: "Garland ISD" },
+          { label: "Year built", value: "2005" },
+          { label: "Pets", value: "Considered case by case" },
+        ],
+        listingUrl:
+          "https://www.realtor.com/rentals/details/814-Honey-Hill-Dr_Garland_TX_75040_M76173-11566",
+        listingUrlLabel: "View on Realtor.com",
+        ctaNote: "Showings by appointment. Text or call to schedule a tour.",
+      },
+    ],
+  },
+
   about: {
     eyebrow: "About",
     title: "Meet Maher",
     paragraphs: [
-      "Maher Almously is a real estate agent working across Dallas-Fort Worth and the surrounding North Texas communities. He works with buyers and sellers at every price point, and he runs every decision through the same filter: does this make sense for you, on paper and in real life?",
-      "His approach is simple. Before you commit to anything, you should understand the numbers behind it. Monthly payment, closing costs, what the comparable sales actually say. Maher lays those out in plain language so you can decide with a clear head.",
-      "You will not get pressure or a countdown clock. You will get direct answers, honest tradeoffs, and practical advice, whether you are buying your first home in Garland or selling a longtime home in Plano.",
+      "I'm Maher Almously, a real estate agent working across Dallas-Fort Worth and the surrounding North Texas communities. I work with buyers and sellers at every price point, and I run every decision through the same filter: does this make sense for you, on paper and in real life?",
+      "My approach is simple. Before you commit to anything, you should understand the numbers behind it. Pricing, closing costs, and what the comparable sales actually say. I lay those out in plain language, and for financing I connect you with trusted lenders who can walk you through your options.",
+      "You will not get pressure or a countdown clock from me. You will get direct answers, honest tradeoffs, and practical advice, whether you are buying your first home or selling a longtime one.",
     ],
     facts: [
       { label: "Serves", value: "DFW and North Texas" },
@@ -138,7 +202,7 @@ export const siteConfig = {
 
   buying: {
     eyebrow: "For buyers",
-    title: "Buying with Maher",
+    title: "Buying with Me",
     lead: "A purchase this size deserves a process, not guesswork. Here is how it runs.",
     steps: [
       {
@@ -147,19 +211,19 @@ export const siteConfig = {
           "Start with a short conversation about your timeline, your budget, and what matters in the next home. No commitment, just clarity on where you stand.",
       },
       {
-        title: "Understand budget and financing",
+        title: "Get pre-approved",
         description:
-          "Compare loan options and see what different price points actually cost per month, taxes and insurance included, before you start touring.",
+          "Financing questions go to the pros. I connect you with trusted local lenders so you can get pre-approved, know your real range, and make offers sellers take seriously.",
       },
       {
         title: "Compare homes with real data",
         description:
-          "Tour with purpose. Maher pulls the comparable sales and flags condition issues, so you know what a fair price looks like on each home.",
+          "Tour with purpose. I pull the comparable sales and flag condition issues, so you know what a fair price looks like on each home.",
       },
       {
         title: "Offer strategy",
         description:
-          "Whether the market is competitive or quiet, structure terms that protect you: price, option period, financing, and timing that fit the situation.",
+          "Whether the market is competitive or quiet, I structure terms that protect you: price, option period, financing, and timing that fit the situation.",
       },
       {
         title: "Inspections and closing",
@@ -168,15 +232,15 @@ export const siteConfig = {
       },
     ] satisfies ProcessStep[],
     cta: {
-      note: "Thinking about buying in the next year? The earlier the conversation, the better your position.",
-      callLabel: "Call Maher",
+      note: "Thinking about buying in the next year? The earlier we talk, the better your position.",
+      textLabel: "Text Me",
       formLabel: "Or start with the form",
     },
   },
 
   selling: {
     eyebrow: "For sellers",
-    title: "Selling with Maher",
+    title: "Selling with Me",
     lead: "The goal is simple: the strongest net, on your timeline, with no surprises.",
     steps: [
       {
@@ -202,7 +266,7 @@ export const siteConfig = {
       {
         title: "Offer review and negotiation",
         description:
-          "Compare offers side by side: price, financing strength, contingencies, and closing dates. Negotiate from the numbers.",
+          "Compare offers side by side: price, financing strength, contingencies, and closing dates. I negotiate from the numbers.",
       },
       {
         title: "Closing plan",
@@ -214,106 +278,115 @@ export const siteConfig = {
 
   homeValue: {
     title: "What is your home worth right now?",
-    copy: "Automated estimates miss remodels, upgrades, and how fast your street is moving. Request a review and get a number you can actually plan around.",
-    callLabel: "Call (817) 501-0172",
+    copy: "Automated estimates miss remodels, upgrades, and how fast your street is moving. Text me and I'll get you a number you can actually plan around.",
+    textLabel: "Text (817) 501-0172",
     reviewLabel: "Request a review",
   },
 
   areas: {
     eyebrow: "Service area",
     title: "Areas served",
-    lead: "Based in the Dallas-Fort Worth area, Maher works with buyers and sellers across North Texas, including:",
-    list: ["Dallas", "Plano", "Garland", "Richardson", "Frisco", "McKinney", "Allen"],
+    lead: "Based in the Dallas-Fort Worth area, I work with buyers and sellers across North Texas, including:",
+    list: [
+      "Dallas",
+      "Fort Worth",
+      "Plano",
+      "Garland",
+      "Arlington",
+      "Irving",
+      "Richardson",
+      "Frisco",
+      "McKinney",
+      "Allen",
+      "Denton",
+      "Grapevine",
+      "Mesquite",
+      "Carrollton",
+      "Lewisville",
+      "Rockwall",
+      "Southlake",
+      "Flower Mound",
+      "Euless",
+      "Bedford",
+      "Grand Prairie",
+      "Prosper",
+      "Wylie",
+    ],
     closer:
       "Not on the list? Most North Texas communities are within range. Ask and you will get a straight answer.",
   },
 
-  listings: {
-    eyebrow: "Listings",
-    title: "Featured Listings",
-    badge: "Coming soon",
-    panelTitle: "Featured listings are on the way",
-    copy: "What is available in DFW changes week to week, and strong homes often go under contract before they get much attention online. For what is on the market right now, or about to be, call Maher.",
-    callLabel: "Call for current options",
-    altLabel: "Send a message instead",
-  },
-
   why: {
-    eyebrow: "Why Maher",
-    title: "Why work with Maher",
+    eyebrow: "Why me",
+    title: "Why work with me",
     points: [
       {
         icon: MessageSquareText,
-        title: "Clear communication",
+        title: "Clear, direct communication",
         description:
-          "You always know where things stand, what happens next, and what it means for you.",
+          "You always know where things stand and what happens next, plus straight answers before any big decision.",
       },
       {
         icon: MapPin,
         title: "Local market focus",
         description:
-          "DFW is not one market. Pricing and competition vary widely between cities and neighborhoods, and strategy here follows the local data.",
+          "DFW is not one market. Pricing and competition vary by city and neighborhood, and my strategy follows the local data.",
       },
       {
-        icon: Percent,
-        title: "Financing-aware guidance",
+        icon: Handshake,
+        title: "A coordinated team behind you",
         description:
-          "Rates, loan types, and monthly cost shape what a home really costs. Maher keeps the financing math in the conversation from day one.",
-      },
-      {
-        icon: Scale,
-        title: "Straight answers before big decisions",
-        description:
-          "If a house or an offer is a bad idea, you hear it plainly, with the reasons, before money is on the line.",
-      },
-      {
-        icon: ListChecks,
-        title: "Buyer and seller strategy",
-        description:
-          "Whether you are buying, selling, or doing both at once, you get a plan for sequence, timing, and negotiation.",
+          "I connect you with trusted lenders and stay coordinated with them so financing never stalls your deal.",
       },
     ] satisfies WhyPoint[],
   },
 
   contact: {
     eyebrow: "Contact",
-    title: "Talk to Maher",
-    lead: "Questions about a home, your budget, or what yours would sell for? Call or text. It is the fastest way to get a real answer.",
+    title: "Talk to Me",
+    lead: "Questions about a home, your budget, or what yours would sell for? Text or call. It is the fastest way to get a real answer from me.",
     voicemailNote:
-      "If the call goes to voicemail, leave your name and number and Maher will get back to you.",
+      "If the call goes to voicemail, leave your name and number and I'll get back to you.",
     form: {
       title: "Or send your details",
-      subtitle:
-        "Fill this out and send it as a text. Your info goes straight to Maher's phone, not a database.",
+      subtitle: "This goes straight to me, whether you're on a phone or a computer.",
       intents: [
         { value: "buy", label: "Buy a home" },
         { value: "sell", label: "Sell a home" },
         { value: "home-value", label: "Get a home value review" },
         { value: "other", label: "Something else" },
       ],
-      submitLabel: "Review and send",
-      ready: {
-        title: "Your message is ready",
-        subtitle:
-          "Sending opens your messaging app with everything filled in. Nothing goes out until you hit send there.",
-        sendLabel: "Send as text",
-        callLabel: "Call instead",
-        editLabel: "Edit details",
+      submitLabel: "Send message",
+      submittingLabel: "Sending...",
+      success: {
+        title: "Message sent",
+        subtitle: "I have it and will follow up soon. If it is urgent, text or call now.",
+        callLabel: "Call Me",
+        textLabel: "Text Me",
+        resetLabel: "Send another message",
       },
     },
   },
 
   footer: {
     tagline: "Real estate for buyers and sellers across DFW and North Texas.",
-    serviceLine:
-      "Dallas · Plano · Garland · Richardson · Frisco · McKinney · Allen · and nearby North Texas communities",
     equalHousing: "Equal Housing Opportunity",
-    // Fill these in when ready; they render only when non-empty.
-    // Texas advertising rules generally require the sponsoring broker's info.
-    compliance: {
-      brokerage: "",
-      license: "",
-    } as { brokerage: string; license: string },
+    brokerage: {
+      name: "Metroplex Realty Brokerage Services LLC",
+      line: "Brokered by Metroplex Realty Brokerage Services LLC",
+    },
+    // TREC requires both links on the homepage in a readily noticeable place.
+    legal: [
+      {
+        label:
+          "Texas Real Estate Commission Information About Brokerage Services",
+        href: "/iabs-maher-almously.pdf",
+      },
+      {
+        label: "Texas Real Estate Commission Consumer Protection Notice",
+        href: "https://www.trec.texas.gov/forms/consumer-protection-notice",
+      },
+    ],
   },
 } as const;
 
