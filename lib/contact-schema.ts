@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const intentValues = ["buy", "sell", "home-value", "other"] as const;
+export const intentValues = ["buy", "sell", "rent", "other"] as const;
 
 export const contactFormSchema = z.object({
   name: z.string().trim().min(2, { message: "Please enter your name." }),

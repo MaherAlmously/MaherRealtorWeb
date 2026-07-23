@@ -9,23 +9,24 @@ import { Section, SectionHeading } from "@/components/site/section";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-type Tab = "buy" | "sell";
+type Tab = "buy" | "sell" | "rent";
 
 export function BuySell() {
-  const { buying, selling, homeValue } = siteConfig;
+  const { buying, selling, renting } = siteConfig;
   const [tab, setTab] = useState<Tab>("buy");
 
   useEffect(() => {
     const applyHash = () => {
       if (window.location.hash === "#sell") setTab("sell");
       else if (window.location.hash === "#buy") setTab("buy");
+      else if (window.location.hash === "#rent") setTab("rent");
     };
     applyHash();
     window.addEventListener("hashchange", applyHash);
     return () => window.removeEventListener("hashchange", applyHash);
   }, []);
 
-  const active = tab === "buy" ? buying : selling;
+  const active = tab === "buy" ? buying : tab === "sell" ? selling : renting;
 
   return (
     <Section
@@ -35,6 +36,7 @@ export function BuySell() {
       backdrop={<DecorativeBackdrop />}
     >
       <span id="sell" className="absolute -mt-24" aria-hidden="true" />
+      <span id="rent" className="absolute -mt-24" aria-hidden="true" />
       <SectionHeading
         eyebrow="Buy or sell"
         title="Work With Me"
@@ -47,7 +49,7 @@ export function BuySell() {
         aria-label="Buying or selling"
         className="mt-9 inline-flex rounded-lg border border-border bg-secondary/40 p-1"
       >
-        {(["buy", "sell"] as const).map((value) => (
+        {(["buy", "sell", "rent"] as const).map((value) => (
           <button
             key={value}
             type="button"
@@ -61,7 +63,7 @@ export function BuySell() {
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
-            {value === "buy" ? "Buying" : "Selling"}
+            {value === "buy" ? "Buying" : value === "sell" ? "Selling" : "Renting"}
           </button>
         ))}
       </div>
@@ -120,23 +122,23 @@ export function BuySell() {
 
       <Reveal delay={0.1}>
         <div
-          id="home-value"
+          id="rent-info"
           className="relative mt-12 scroll-mt-24 overflow-hidden rounded-xl bg-panel px-7 py-10 sm:px-10 sm:py-12 lg:flex lg:items-center lg:justify-between lg:gap-12"
         >
           <DecorativeBackdrop variant="dark" />
           <div className="relative z-10">
             <h3 className="font-serif text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              {homeValue.title}
+              {renting.panel.title}
             </h3>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-300 sm:text-base">
-              {homeValue.copy}
+              {renting.panel.copy}
             </p>
           </div>
           <div className="relative z-10 mt-7 flex flex-wrap items-center gap-3 lg:mt-0 lg:shrink-0">
             <Button asChild size="lg">
               <a href={siteConfig.smsHref}>
                 <MessageSquareText className="size-4" />
-                {homeValue.textLabel}
+                {renting.panel.textLabel}
               </a>
             </Button>
             <Button
@@ -145,7 +147,7 @@ export function BuySell() {
               variant="outline"
               className="border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white/10 hover:text-white"
             >
-              <a href="#contact">{homeValue.reviewLabel}</a>
+              <a href="#contact">{renting.panel.reviewLabel}</a>
             </Button>
           </div>
         </div>

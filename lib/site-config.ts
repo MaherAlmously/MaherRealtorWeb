@@ -8,7 +8,6 @@ import {
   MessageSquareText,
   Search,
   Tag,
-  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 
@@ -39,13 +38,14 @@ export const siteConfig = {
   emailHref: "mailto:connect@maherealtor.com",
 
   metadata: {
-    title: "Buy or Sell in DFW | Maher Almously, REALTOR®",
+    title: "Buy, Sell, or Rent in DFW | Maher Almously, REALTOR®",
     description:
-      "Buying or selling in Dallas-Fort Worth? Maher Almously helps you compare the real numbers, avoid overpaying, and move with a clear plan. Text or call (817) 501-0172.",
+      "Buying, selling, or renting in Dallas-Fort Worth? Maher Almously helps you compare the real numbers, avoid overpaying, and move with a clear plan. Text or call (817) 501-0172.",
     keywords: [
       "DFW real estate agent",
       "Dallas Fort Worth REALTOR",
       "homes for sale DFW",
+      "homes for rent DFW",
       "sell my home DFW",
       "North Texas real estate",
       "Maher Almously",
@@ -57,20 +57,20 @@ export const siteConfig = {
     { label: "Listing", href: "#listing" },
     { label: "Buy", href: "#buy" },
     { label: "Sell", href: "#sell" },
-    { label: "Home Value", href: "#home-value" },
+    { label: "Rent", href: "#rent" },
     { label: "Areas Served", href: "#areas" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavLink[],
 
   hero: {
     eyebrow: "DFW and North Texas real estate",
-    headlineWords: ["Buy", "Sell", "Rent", "Invest"],
+    headlineWords: ["Buy", "Sell", "Rent", "Lease"],
     headlineSuffix: "in DFW with the numbers in front of you.",
     support:
-      "Buying or selling in North Texas moves fast. I help you compare the numbers, understand your options, and move with a clear plan.",
+      "Buying, selling, or renting in North Texas moves fast. I help you compare the numbers, understand your options, and move with a clear plan.",
     ctaPrimary: { label: "Text Me", href: "sms:8175010172" },
     ctaSecondary: { label: "Call Me", href: "tel:8175010172" },
-    ctaTertiary: { label: "Request Home Value", href: "#home-value" },
+    ctaTertiary: { label: "Explore Renting", href: "#rent" },
     panel: {
       title: "Start here",
       rows: [
@@ -87,10 +87,10 @@ export const siteConfig = {
           href: "#sell",
         },
         {
-          icon: TrendingUp,
-          title: "What is my home worth?",
-          description: "Get a straight pricing review built on recent sales.",
-          href: "#home-value",
+          icon: KeyRound,
+          title: "Renting or leasing",
+          description: "Find a rental or get your property leased to a qualified tenant.",
+          href: "#rent",
         },
       ],
       textLabel: "Text or call me",
@@ -108,11 +108,11 @@ export const siteConfig = {
     },
     {
       icon: Calculator,
-      title: "Request Home Value",
+      title: "Renting & Leasing",
       description:
-        "Get a pricing review based on the sales that actually compare to your home, not an automated estimate.",
-      ctaLabel: "Request a review",
-      href: "#home-value",
+        "Looking for a rental, or need your property leased? I work with both renters and landlords across DFW.",
+      ctaLabel: "Explore renting",
+      href: "#rent",
     },
     {
       icon: ClipboardList,
@@ -197,7 +197,7 @@ export const siteConfig = {
       { label: "Focus", value: "Clear numbers, practical advice" },
       { label: "Phone", value: "(817) 501-0172" },
     ],
-    badges: ["Buyer representation", "Seller representation", "Home value reviews"],
+    badges: ["Buyer representation", "Seller representation", "Renting & leasing"],
   },
 
   buying: {
@@ -276,11 +276,43 @@ export const siteConfig = {
     ] satisfies ProcessStep[],
   },
 
-  homeValue: {
-    title: "What is your home worth right now?",
-    copy: "Automated estimates miss remodels, upgrades, and how fast your street is moving. Text me and I'll get you a number you can actually plan around.",
-    textLabel: "Text (817) 501-0172",
-    reviewLabel: "Request a review",
+  renting: {
+    eyebrow: "For renters and landlords",
+    title: "Renting with Me",
+    lead: "Whether you need a place to rent or need your property leased, here's how it runs.",
+    steps: [
+      {
+        title: "Tell me what you need",
+        description:
+          "Renters: share your budget, area, and must haves. Landlords: share your property details and timeline.",
+      },
+      {
+        title: "See real options",
+        description:
+          "Renters: I set up a tailored search with real available rentals. Landlords: I run comps to price your lease competitively.",
+      },
+      {
+        title: "Tour or market the property",
+        description:
+          "Renters: I schedule showings that fit your schedule. Landlords: I list, photograph, and market your property to qualified tenants.",
+      },
+      {
+        title: "Application and screening",
+        description:
+          "Renters: I help you put together a strong application. Landlords: I screen applicants for income, rental history, and background.",
+      },
+      {
+        title: "Lease signing",
+        description:
+          "Review lease terms together so everyone knows what to expect before signing.",
+      },
+    ] satisfies ProcessStep[],
+    panel: {
+      title: "Ready to rent or lease?",
+      copy: "Whether you're searching for a home to rent or need your property leased to a qualified tenant, text me and let's get started.",
+      textLabel: "Text (817) 501-0172",
+      reviewLabel: "Start the conversation",
+    },
   },
 
   areas: {
@@ -353,7 +385,7 @@ export const siteConfig = {
       intents: [
         { value: "buy", label: "Buy a home" },
         { value: "sell", label: "Sell a home" },
-        { value: "home-value", label: "Get a home value review" },
+        { value: "rent", label: "Rent or lease a home" },
         { value: "other", label: "Something else" },
       ],
       submitLabel: "Send message",
