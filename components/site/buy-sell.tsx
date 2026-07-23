@@ -9,10 +9,17 @@ import { Section, SectionHeading } from "@/components/site/section";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-type Tab = "buy" | "sell" | "rent";
+type Tab = "buy" | "sell" | "rent" | "lease";
+
+const tabLabels: Record<Tab, string> = {
+  buy: "Buying",
+  sell: "Selling",
+  rent: "Renting",
+  lease: "Leasing",
+};
 
 export function BuySell() {
-  const { buying, selling, renting } = siteConfig;
+  const { buying, selling, renting, leasing } = siteConfig;
   const [tab, setTab] = useState<Tab>("buy");
 
   useEffect(() => {
@@ -20,13 +27,16 @@ export function BuySell() {
       if (window.location.hash === "#sell") setTab("sell");
       else if (window.location.hash === "#buy") setTab("buy");
       else if (window.location.hash === "#rent") setTab("rent");
+      else if (window.location.hash === "#lease") setTab("lease");
     };
     applyHash();
     window.addEventListener("hashchange", applyHash);
     return () => window.removeEventListener("hashchange", applyHash);
   }, []);
 
-  const active = tab === "buy" ? buying : tab === "sell" ? selling : renting;
+  const active =
+    tab === "buy" ? buying : tab === "sell" ? selling : tab === "rent" ? renting : leasing;
+  const activePanel = tab === "lease" ? leasing.panel : renting.panel;
 
   return (
     <Section
@@ -37,8 +47,9 @@ export function BuySell() {
     >
       <span id="sell" className="absolute -mt-24" aria-hidden="true" />
       <span id="rent" className="absolute -mt-24" aria-hidden="true" />
+      <span id="lease" className="absolute -mt-24" aria-hidden="true" />
       <SectionHeading
-        eyebrow="Buy or sell"
+        eyebrow="Buy, sell, rent, or lease"
         title="Work With Me"
         titleId="buy-sell-title"
         lead="Whichever side of the table you're on, here's how the process runs."
@@ -46,10 +57,10 @@ export function BuySell() {
 
       <div
         role="tablist"
-        aria-label="Buying or selling"
-        className="mt-9 inline-flex rounded-lg border border-border bg-secondary/40 p-1"
+        aria-label="Buying, selling, renting, or leasing"
+        className="mt-9 inline-flex flex-wrap rounded-lg border border-border bg-secondary/40 p-1"
       >
-        {(["buy", "sell", "rent"] as const).map((value) => (
+        {(["buy", "sell", "rent", "lease"] as const).map((value) => (
           <button
             key={value}
             type="button"
@@ -63,7 +74,7 @@ export function BuySell() {
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
-            {value === "buy" ? "Buying" : value === "sell" ? "Selling" : "Renting"}
+            {tabLabels[value]}
           </button>
         ))}
       </div>
@@ -120,38 +131,40 @@ export function BuySell() {
         </Reveal>
       ) : null}
 
-      <Reveal delay={0.1}>
-        <div
-          id="rent-info"
-          className="relative mt-12 scroll-mt-24 overflow-hidden rounded-xl bg-panel px-7 py-10 sm:px-10 sm:py-12 lg:flex lg:items-center lg:justify-between lg:gap-12"
-        >
-          <DecorativeBackdrop variant="dark" />
-          <div className="relative z-10">
-            <h3 className="font-serif text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              {renting.panel.title}
-            </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-300 sm:text-base">
-              {renting.panel.copy}
-            </p>
+      {tab === "rent" || tab === "lease" ? (
+        <Reveal delay={0.1}>
+          <div
+            id="rent-info"
+            className="relative mt-12 scroll-mt-24 overflow-hidden rounded-xl bg-panel px-7 py-10 sm:px-10 sm:py-12 lg:flex lg:items-center lg:justify-between lg:gap-12"
+          >
+            <DecorativeBackdrop variant="dark" />
+            <div className="relative z-10">
+              <h3 className="font-serif text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                {activePanel.title}
+              </h3>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-300 sm:text-base">
+                {activePanel.copy}
+              </p>
+            </div>
+            <div className="relative z-10 mt-7 flex flex-wrap items-center gap-3 lg:mt-0 lg:shrink-0">
+              <Button asChild size="lg">
+                <a href={siteConfig.smsHref}>
+                  <MessageSquareText className="size-4" />
+                  {activePanel.textLabel}
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white/10 hover:text-white"
+              >
+                <a href="#contact">{activePanel.reviewLabel}</a>
+              </Button>
+            </div>
           </div>
-          <div className="relative z-10 mt-7 flex flex-wrap items-center gap-3 lg:mt-0 lg:shrink-0">
-            <Button asChild size="lg">
-              <a href={siteConfig.smsHref}>
-                <MessageSquareText className="size-4" />
-                {renting.panel.textLabel}
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white/10 hover:text-white"
-            >
-              <a href="#contact">{renting.panel.reviewLabel}</a>
-            </Button>
-          </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      ) : null}
     </Section>
   );
 }

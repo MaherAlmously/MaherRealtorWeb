@@ -58,6 +58,7 @@ export const siteConfig = {
     { label: "Buy", href: "#buy" },
     { label: "Sell", href: "#sell" },
     { label: "Rent", href: "#rent" },
+    { label: "Lease", href: "#lease" },
     { label: "Areas Served", href: "#areas" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavLink[],
@@ -193,7 +194,7 @@ export const siteConfig = {
     ],
     facts: [
       { label: "Serves", value: "DFW and North Texas" },
-      { label: "Works with", value: "Buyers and sellers" },
+      { label: "Works with", value: "Buyers, sellers, and renters" },
       { label: "Focus", value: "Clear numbers, practical advice" },
       { label: "Phone", value: "(817) 501-0172" },
     ],
@@ -277,39 +278,78 @@ export const siteConfig = {
   },
 
   renting: {
-    eyebrow: "For renters and landlords",
+    eyebrow: "For renters",
     title: "Renting with Me",
-    lead: "Whether you need a place to rent or need your property leased, here's how it runs.",
+    lead: "Looking for a place to rent? Here's how I help you find it.",
     steps: [
       {
         title: "Tell me what you need",
         description:
-          "Renters: share your budget, area, and must haves. Landlords: share your property details and timeline.",
+          "Share your budget, area, and must haves, and I'll know what to look for on your behalf.",
       },
       {
         title: "See real options",
         description:
-          "Renters: I set up a tailored search with real available rentals. Landlords: I run comps to price your lease competitively.",
+          "I set up a tailored search so real available rentals that match your criteria come straight to you.",
       },
       {
-        title: "Tour or market the property",
+        title: "Tour homes",
         description:
-          "Renters: I schedule showings that fit your schedule. Landlords: I list, photograph, and market your property to qualified tenants.",
+          "I schedule showings that fit your schedule and flag anything worth asking the landlord about.",
       },
       {
-        title: "Application and screening",
+        title: "Put together your application",
         description:
-          "Renters: I help you put together a strong application. Landlords: I screen applicants for income, rental history, and background.",
+          "I help you prepare a strong application so you stand out to landlords and property managers.",
       },
       {
         title: "Lease signing",
         description:
-          "Review lease terms together so everyone knows what to expect before signing.",
+          "Review the lease terms together so you know exactly what you're agreeing to before you sign.",
       },
     ] satisfies ProcessStep[],
     panel: {
-      title: "Ready to rent or lease?",
-      copy: "Whether you're searching for a home to rent or need your property leased to a qualified tenant, text me and let's get started.",
+      title: "Ready to find a rental?",
+      copy: "Tell me your budget, area, and must haves, and I'll start matching you with real available rentals.",
+      textLabel: "Text (817) 501-0172",
+      reviewLabel: "Start the conversation",
+    },
+  },
+
+  leasing: {
+    eyebrow: "For landlords",
+    title: "Leasing with Me",
+    lead: "Need your property leased? Here's how I get it rented to a qualified tenant.",
+    steps: [
+      {
+        title: "Property review",
+        description:
+          "Share your property details, timeline, and rent goals so I know what we're working with.",
+      },
+      {
+        title: "Pricing",
+        description:
+          "I run comps on comparable rentals so your property is priced to lease quickly without leaving money behind.",
+      },
+      {
+        title: "Marketing",
+        description:
+          "Professional photos, an accurate listing, and exposure where qualified tenants are actually looking.",
+      },
+      {
+        title: "Screening",
+        description:
+          "I screen applicants for income, rental history, and background so you get a tenant you can trust.",
+      },
+      {
+        title: "Lease signing",
+        description:
+          "Finalize lease terms and get everything documented before your new tenant moves in.",
+      },
+    ] satisfies ProcessStep[],
+    panel: {
+      title: "Ready to lease your property?",
+      copy: "Share your property details and timeline, and I'll get it priced, marketed, and leased to a qualified tenant.",
       textLabel: "Text (817) 501-0172",
       reviewLabel: "Start the conversation",
     },
@@ -381,11 +421,12 @@ export const siteConfig = {
       "If the call goes to voicemail, leave your name and number and I'll get back to you.",
     form: {
       title: "Or send your details",
-      subtitle: "This goes straight to me, whether you're on a phone or a computer.",
+      subtitle: "This goes straight to me.",
       intents: [
         { value: "buy", label: "Buy a home" },
         { value: "sell", label: "Sell a home" },
-        { value: "rent", label: "Rent or lease a home" },
+        { value: "rent", label: "Rent a home" },
+        { value: "lease", label: "Lease my property" },
         { value: "other", label: "Something else" },
       ],
       submitLabel: "Send message",
@@ -401,8 +442,9 @@ export const siteConfig = {
   },
 
   footer: {
-    tagline: "Real estate for buyers and sellers across DFW and North Texas.",
+    tagline: "Real estate for buyers, sellers, and renters across DFW and North Texas.",
     equalHousing: "Equal Housing Opportunity",
+    credit: "Site built by Maxora.tech",
     brokerage: {
       name: "Metroplex Realty Brokerage Services LLC",
       line: "Brokered by Metroplex Realty Brokerage Services LLC",

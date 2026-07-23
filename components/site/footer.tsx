@@ -94,6 +94,10 @@ export function Footer() {
           </p>
           <p>{footer.equalHousing}</p>
         </div>
+
+        <div className="mt-3 text-xs text-stone-500">
+          <p>{footer.credit}</p>
+        </div>
       </div>
     </footer>
   );
