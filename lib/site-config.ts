@@ -176,9 +176,16 @@ export const siteConfig = {
           { label: "Year built", value: "2005" },
           { label: "Pets", value: "Considered case by case" },
         ],
-        listingUrl:
-          "https://www.realtor.com/rentals/details/814-Honey-Hill-Dr_Garland_TX_75040_M76173-11566",
-        listingUrlLabel: "View on Realtor.com",
+        externalLinks: [
+          {
+            label: "View on Realtor.com",
+            href: "https://www.realtor.com/rentals/details/814-Honey-Hill-Dr_Garland_TX_75040_M76173-11566",
+          },
+          {
+            label: "View on Zillow",
+            href: "https://www.zillow.com/homedetails/814-Honey-Hill-Dr-Garland-TX-75040/69671623_zpid/",
+          },
+        ],
         ctaNote: "Showings by appointment. Text or call to schedule a tour.",
       },
     ],

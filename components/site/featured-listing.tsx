@@ -202,15 +202,18 @@ function ListingCard({ listing }: { listing: Listing }) {
               {listings.callLabel}
             </a>
           </Button>
-          <a
-            href={listing.listingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary"
-          >
-            {listing.listingUrlLabel}
-            <SquareArrowOutUpRight className="size-3.5" aria-hidden="true" />
-          </a>
+          {listing.externalLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary"
+            >
+              {link.label}
+              <SquareArrowOutUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+          ))}
         </div>
         <p className="mt-3 text-xs text-muted-foreground">{listing.ctaNote}</p>
       </div>
