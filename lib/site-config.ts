@@ -187,9 +187,9 @@ export const siteConfig = {
     eyebrow: "About",
     title: "Meet Maher",
     paragraphs: [
-      "I'm Maher Almously, a real estate agent working across Dallas-Fort Worth and the surrounding North Texas communities. I work with buyers and sellers at every price point, and I run every decision through the same filter: does this make sense for you, on paper and in real life?",
-      "My approach is simple. Before you commit to anything, you should understand the numbers behind it. Pricing, closing costs, and what the comparable sales actually say. I lay those out in plain language, and for financing I connect you with trusted lenders who can walk you through your options.",
-      "You will not get pressure or a countdown clock from me. You will get direct answers, honest tradeoffs, and practical advice, whether you are buying your first home or selling a longtime one.",
+      "I'm Maher Almously, a real estate agent working across Dallas-Fort Worth and North Texas. I work with buyers, sellers, and renters at every price point, and I run every decision through one filter: does this make sense for you, on paper and in real life?",
+      "Before you commit to anything, you should understand the numbers behind it: pricing, closing costs, comparable sales. I lay that out in plain language and connect you with trusted lenders for financing.",
+      "No pressure, no countdown clock. Just direct answers and practical advice, whether you're buying your first home, selling a longtime one, or renting.",
     ],
     facts: [
       { label: "Serves", value: "DFW and North Texas" },
